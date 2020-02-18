@@ -11,21 +11,21 @@ In my use case, I'm running the wireguard docker image on a free-tier Google Clo
 ### First Run
 If the wireguard kernel module is not already installed on the __host__ system, use this first run command to install it:
 ```
-docker run -it --rm --cap-add sys_module -v /lib/modules:/lib/modules cmulk/wireguard-docker:buster install-module
+docker run -it --rm --cap-add sys_module -v /lib/modules:/lib/modules j3k4/wireguard-docker:buster-slim install-module
 ```
 
 ### Normal Run
 ```
-docker run --cap-add net_admin --cap-add sys_module -v <config volume or host dir>:/etc/wireguard -p <externalport>:<dockerport>/udp cmulk/wireguard-docker:buster
+docker run --cap-add net_admin --cap-add sys_module -v <config volume or host dir>:/etc/wireguard -p <externalport>:<dockerport>/udp j3k4/wireguard-docker:buster-slim
 ```
 Example:
 ```
-docker run --cap-add net_admin --cap-add sys_module -v wireguard_conf:/etc/wireguard -p 5555:5555/udp cmulk/wireguard-docker:buster
+docker run --cap-add net_admin --cap-add sys_module -v wireguard_conf:/etc/wireguard -p 5555:5555/udp j3k4/wireguard-docker:buster-slim
 ```
 ### Generate Keys
 This shortcut can be used to generate and display public/private key pairs to use for the server or clients
 ```
-docker run -it --rm cmulk/wireguard-docker:buster genkeys
+docker run -it --rm j3k4/wireguard-docker:buster-slim genkeys
 ```
 
 ## Configuration
@@ -86,11 +86,13 @@ volumes:
 ## Build
 Since the images are already on Docker Hub, you only need to do this if you want to change something
 ```
-git clone https://github.com/cmulk/wireguard-docker.git
+git clone https://github.com/J3k4/wireguard-docker.git
 cd wireguard-docker
 git checkout stretch 
 ##OR##
 git checkout buster
+##OR##
+git checkout buster-slim
 
 docker build -t wireguard:local .
 ```
