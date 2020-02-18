@@ -64,7 +64,7 @@ Sample docker-compose.yml
 version: "2"
 services:
  vpn:
-  image: cmulk/wireguard-docker:buster
+  image: j3k4/wireguard-docker:buster-slim
   volumes:
    - data:/etc/wireguard
   networks:
